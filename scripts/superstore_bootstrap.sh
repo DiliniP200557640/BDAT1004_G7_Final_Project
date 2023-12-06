@@ -26,8 +26,7 @@ sudo pip-3.8 install psycopg2-binary==2.8.6
 sudo mkdir -p /home/ec2-user/superstore/code/
 sudo chmod 777 /home/ec2-user/superstore/code/
 
-sudo mkdir ~/.kaggle
-sudo chmod 777 ~/.kaggle/
+sudo mkdir /root/.kaggle/
 
 sudo mkdir -p /home/ec2-user/superstore/code/sql/
 sudo chmod 777 /home/ec2-user/superstore/code/sql/
@@ -39,8 +38,6 @@ aws s3 cp s3://temp-data-dev-2023/code/ /home/ec2-user/superstore/code/ --recurs
 
 sudo aws s3 cp s3://temp-data-dev-2023/code/config/kaggle.json /root/.kaggle/kaggle.json
 sudo chmod 600 /root/.kaggle/kaggle.json
-
-sudo ls /home/ec2-user/superstore/code/; 
 
 aws configure set region us-east-1;
 
