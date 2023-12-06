@@ -1,0 +1,56 @@
+{
+  "objects": [
+    {
+      "failureAndRerunMode": "CASCADE",
+      "resourceRole": "aws-datapipeline-resource-role",
+      "role": "aws-datapipeline-role",
+      "pipelineLogUri": "s3://superstore-data-dev-2023/logs/",
+      "scheduleType": "ONDEMAND",
+      "name": "Default",
+      "id": "Default"
+    },
+    {
+      "name": "Bootstrap",
+      "id": "CliActivity1",
+      "runsOn": {
+        "ref": "Ec2Instance"
+      },
+      "type": "ShellCommandActivity",
+      "command": "aws s3 cp s3://superstore-data-dev-2023/superstore_bootstrap.sh /home/ec2-user/;\n sh /home/ec2-user/superstore_bootstrap.sh; \n ls /home/ec2-user/code/ ; echo 'Bootstrap completed !';"
+    },
+    {
+      "dependsOn": {
+        "ref": "CliActivity1"
+      },
+      "name": "Data Load - STG",
+      "id": "CliActivity2",
+      "runsOn": {
+        "ref": "Ec2Instance"
+      },
+      "type": "ShellCommandActivity",
+      "command": "python /home/ec2-user/superstore/code/superstore_load.py; echo 'Data Loaded to STG Table';"
+    },
+    {
+      "dependsOn": {
+        "ref": "CliActivity2"
+      },
+      "name": "Data Load - TGT",
+      "id": "CliActivity3",
+      "runsOn": {
+        "ref": "Ec2Instance"
+      },
+      "type": "ShellCommandActivity",
+      "command": "python /home/ec2-user/superstore/code/superstore_unload.py; echo 'Data Loaded to TGT Table'; sleep 1h;"
+    },
+    {
+      "instanceType": "t2.micro",
+      "name": "Super Store ETL",
+      "id": "Ec2Instance",
+      "keyPair": "aws-dev-key",
+      "type": "Ec2Resource",
+      "imageId":"ami-0230bd60aa48260c6",
+      "terminateAfter": "90 Minutes"
+    }
+  ],
+  "parameters": []
+}

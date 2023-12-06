@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Superstore Sales Analysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+        *{box-sizing: border-box;}
+
+        body { 
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .header {
+        overflow: hidden;
+        background-color: #f1f1f1;
+        padding: 20px 10px;
+        }
+
+        .header a {
+        float: left;
+        color: black;
+        text-align: center;
+        padding: 12px;
+        text-decoration: none;
+        font-size: 18px; 
+        line-height: 25px;
+        border-radius: 4px;
+        }
+
+        .header a.logo {
+        font-size: 25px;
+        font-weight: bold;
+        }
+
+        .header a:hover {
+        background-color: #ddd;
+        color: black;
+        }
+
+        .header a.active {
+        background-color: dodgerblue;
+        color: white;
+        }
+
+        .header-right {
+        float: right;
+        }
+
+        @media screen and (max-width: 500px) {
+        .header a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+        
+        .header-right {
+            float: none;
+        }
+        
+        }
+
+        table {
+            display: block;
+            max-width: 1000px;
+            overflow-x: auto;
+            white-space: nowrap;
+
+        }
+
+        .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            
+        }
+
+        .styled-table thead tr {
+            background-color: rgb(43, 177, 126);
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+            width: 100%;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid rgb(43, 177, 126);
+        }
+        
+        body{
+            font-family: Arial, sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#default" class="logo">Superstore Sales Analysis</a>
+        <div class="header-right">
+          <a href="/">Home</a>
+          <a href="/sales">Sales Dashboard</a>
+          <a class="active" href="#datadisplay">Data</a>
+        </div>
+    </div>
+    <div>
+        <h2 style="text-align: center;">Top 20 Sales Data</h2>
+        <table class="styled-table" style="margin-left:auto;margin-right:auto">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Order Date</th>
+                    <th>Ship Date</th>
+                    <th>Ship Mode</th>
+                    <th>Customer ID</th>
+                    <th>Customer Name</th>
+                    <th>Segment</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Postal Code</th>
+                    <th>Region</th>
+                    <th>Product ID</th>
+                    <th>Category</th>
+                    <th>Sub-Category</th>
+                    <th>Product Name</th>
+                    <th>Sales</th>
+                    <th>Quantity</th>
+                    <th>Discount</th>
+                    <th>Profit</th>
+                    <th>Profit Margin</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sales in data %}
+                    <tr>
+                        <td>{{ sales[0] }}</td>
+                        <td>{{ sales[1] }}</td>
+                        <td>{{ sales[2] }}</td>
+                        <td>{{ sales[3] }}</td>
+                        <td>{{ sales[4] }}</td>
+                        <td>{{ sales[5] }}</td>
+                        <td>{{ sales[6] }}</td>
+                        <td>{{ sales[7] }}</td>
+                        <td>{{ sales[8] }}</td>
+                        <td>{{ sales[9] }}</td>
+                        <td>{{ sales[10] }}</td>
+                        <td>{{ sales[11] }}</td>
+                        <td>{{ sales[12] }}</td>
+                        <td>{{ sales[13] }}</td>
+                        <td>{{ sales[14] }}</td>
+                        <td>{{ sales[15] }}</td>
+                        <td>{{ sales[16] }}</td>
+                        <td>{{ sales[17] }}</td>
+                        <td>{{ sales[18] }}</td>
+                        <td>{{ sales[19] }}</td>
+                        <td>{{ sales[20] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
